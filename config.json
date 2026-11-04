@@ -1,0 +1,46 @@
+{
+  "owner": "zerochance1907",
+  "cycle_every_days": 7,
+  "debate_rounds": 3,
+  "max_iterations": 1,
+  "max_restarts": 1,
+  "max_failures_per_step": 2,
+  "notify_on_done": true,
+  "scout": {
+    "topics": [
+      "artificial-intelligence", "llm", "ai-agents", "agents", "machine-learning",
+      "deep-learning", "robotics", "ros2", "embodied-ai", "reinforcement-learning",
+      "computer-vision", "generative-ai", "mcp"
+    ],
+    "week_min_stars": 15,
+    "year_min_stars": 300,
+    "keep_per_window": 40
+  },
+  "agents": {
+    "researcher": {
+      "prompt": ["researcher.md"],
+      "model": "sonnet",
+      "budget_usd": 3,
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "WebSearch",
+                "Bash(gh api:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
+    },
+    "novelty-a": {
+      "prompt": ["novelty-a.md"],
+      "model": "opus",
+      "budget_usd": 3,
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "WebSearch",
+                "Bash(gh api:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
+    },
+    "novelty-b": {
+      "prompt": ["novelty-b.md"],
+      "model": "opus",
+      "budget_usd": 3,
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "WebSearch",
+                "Bash(gh api:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
+    },
+    "exec-1": { "prompt": ["executioner.md", "exec-1.md"], "model": "opus", "budget_usd": 10, "full_access": true },
+    "exec-2": { "prompt": ["executioner.md", "exec-2.md"], "model": "opus", "budget_usd": 10, "full_access": true },
+    "exec-3": { "prompt": ["executioner.md", "exec-3.md"], "model": "opus", "budget_usd": 10, "full_access": true },
+    "reviewer": { "prompt": ["reviewer.md"], "model": "opus", "budget_usd": 6, "full_access": true }
+  }
+}

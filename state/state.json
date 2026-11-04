@@ -1,0 +1,14 @@
+{
+  "cycle": null,
+  "stage": "idle",
+  "step": 0,
+  "iteration": 0,
+  "restarts": 0,
+  "failures": 0,
+  "seq": 0,
+  "last_cycle_started": null,
+  "cost_usd": 0.0,
+  "pending_questions": [],
+  "escalated": [],
+  "history": []
+}

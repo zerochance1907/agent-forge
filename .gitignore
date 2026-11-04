@@ -1,0 +1,8 @@
+logs/
+.worktrees/
+local.json
+__pycache__/
+**/vendor/
+**/.venv/
+**/node_modules/
+*.pyc
