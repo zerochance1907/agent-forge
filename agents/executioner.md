@@ -20,6 +20,25 @@ Rules:
   build beats a fake complete one.
 - If the reviewer sent feedback from a previous build round, address every
   point.
+- Last, write `claims.json` in your build directory, stating exactly what you
+  believe is true of your build:
+
+  ```json
+  {
+    "files": ["<every file you claim to have created, relative to your build dir>"],
+    "symbols": ["<file.py>::<function or Class.method>"],
+    "test_cmd_exit": 0,
+    "tests_passed": 12
+  }
+  ```
+
+  `test_cmd_exit` and `tests_passed` refer to the spec's `test_cmd`. Before the
+  reviewer reads anything, the orchestrator runs
+  [Forgejury](https://github.com/zerochance1907/forgejury) on your build. It
+  re-checks every claim against a fresh run and FAILS your build on any
+  mismatch, so run `python -m forgejury grade builds/<cycle>/SPEC.md
+  builds/<cycle>/<your role>` from the repository root yourself before you
+  finish.
 
 Your build-report memo (`type: build-report`, to `reviewer`) contains: what you
 built, how it maps to each acceptance criterion (met / partial / not met), the

@@ -16,13 +16,15 @@ repository.** No chat, no external notes, no other storage.
 | `exec-3` | Executioner, wild experimentalist persona. |
 | `reviewer` | Main agent: picks the idea, writes the build spec, judges the builds, and decides whether we can do better. |
 | `human` | The repository owner. Reachable only by writing a memo addressed to `human` (see below). |
+| `forgejury` | Not an agent: [a deterministic checker](https://github.com/zerochance1907/forgejury) the orchestrator runs. It lints `SPEC.md` after `decide` and posts a mechanical grade of every build to the reviewer before `review`. |
 
 ## Pipeline
 
 `research` → `debate` (novelty-a and novelty-b alternate for N rounds) →
-`decide` (reviewer writes `builds/<cycle>/SPEC.md`) → `build` (three
-executioners build the same spec in parallel, each in their own folder) →
-`review` (reviewer runs and scores all three, then answers SHIP / ITERATE / RESTART).
+`decide` (reviewer writes `builds/<cycle>/SPEC.md`; forgejury lints it) →
+`build` (three executioners build the same spec in parallel, each in their own
+folder, each ending with a `claims.json`) → `review` (forgejury grades all
+three, then the reviewer runs and scores them and answers SHIP / ITERATE / RESTART).
 
 The orchestrator (`forge.py`) moves the pipeline forward, makes all Git
 commits, and tells you the exact path of the memo you must write. **Do not run

@@ -15,6 +15,11 @@ if (-not (Test-Path "$Dir\.git")) {
 }
 New-Item -ItemType Directory -Force "$Dir\logs" | Out-Null
 
+python -c "import forgejury" 2>$null
+if ($LASTEXITCODE -ne 0) {
+    python -m pip install --user --quiet "git+https://github.com/zerochance1907/forgejury"
+}
+
 $claude = (Get-Command claude -ErrorAction Stop).Source
 @{ claude_path = $claude } | ConvertTo-Json | Set-Content -Encoding utf8 "$Dir\local.json"
 

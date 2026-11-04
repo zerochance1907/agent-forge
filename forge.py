@@ -257,15 +257,40 @@ def stage_debate(state):
     return True
 
 
+def forgejury(*args, timeout=900):
+    """Run the forgejury CLI (github.com/zerochance1907/forgejury, built by cycle 1).
+
+    Returns (exit_code, output), or (None, reason) when it is not installed or hangs,
+    so the pipeline degrades to a reviewer-only review instead of stopping."""
+    try:
+        r = subprocess.run([sys.executable, "-m", "forgejury", *args], cwd=ROOT, capture_output=True,
+                           text=True, encoding="utf-8", errors="replace", timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return None, f"forgejury timed out after {timeout}s"
+    if r.returncode and "No module named forgejury" in r.stderr:
+        return None, "forgejury is not installed (pip install git+https://github.com/zerochance1907/forgejury)"
+    return r.returncode, (r.stdout + r.stderr).strip()
+
+
 def stage_decide(state):
     c = state["cycle"]
-    memo = run_agent(state, "reviewer",
-                     f"Stage decide. Read research/{c}/report.md and the whole debate, pick one idea, "
-                     f"and write builds/{c}/SPEC.md. End your memo with `DECISION: <title>`.",
-                     "exec-1, exec-2, exec-3, all")
+    task = (f"Stage decide. Read research/{c}/report.md and the whole debate, pick one idea, "
+            f"and write builds/{c}/SPEC.md, ending with its Forgejury Acceptance Block. "
+            f"End your memo with `DECISION: <title>`.")
+    if state.get("lint_feedback"):
+        task += (f"\n\nYour previous builds/{c}/SPEC.md failed `forgejury lint`; rewrite it so this "
+                 f"passes:\n{state['lint_feedback']}")
+    memo = run_agent(state, "reviewer", task, "exec-1, exec-2, exec-3, all")
     m = re.search(r"DECISION:\s*(.+)", (ROOT / memo).read_text(encoding="utf-8"))
     if not (ROOT / "builds" / c / "SPEC.md").exists():
         raise RuntimeError("reviewer did not write SPEC.md")
+    code, out = forgejury("lint", f"builds/{c}/SPEC.md")
+    if code is None:
+        log(f"skipping spec lint: {out}")
+    elif code:
+        state["lint_feedback"] = out[-3000:]
+        raise RuntimeError(f"SPEC.md failed forgejury lint:\n{out[-1500:]}")
+    state.pop("lint_feedback", None)
     state["decision"] = m.group(1).strip() if m else "(see spec)"
     state.update(stage="build", step=0)
     checkpoint(state, "reviewer", f"reviewer: decision for {c}: {state['decision']}")
@@ -306,12 +331,36 @@ def stage_build(state):
     return True
 
 
+def run_jury(state):
+    """Grade every build mechanically with forgejury and post the result as a memo
+    to the reviewer. Returns the memo path."""
+    c = state["cycle"]
+    dirs = [f"builds/{c}/{role}" for role in EXECS if (ROOT / "builds" / c / role).is_dir()]
+    code, human = forgejury("grade", f"builds/{c}/SPEC.md", *dirs)
+    if code is not None:
+        _, as_json = forgejury("grade", f"builds/{c}/SPEC.md", *dirs, "--json")
+        (ROOT / "builds" / c / f"forgejury-r{state['iteration']}.json").write_text(as_json + "\n", encoding="utf-8")
+    summary = next((line for line in human.splitlines() if line.startswith("Summary:")), "unavailable")
+    meaning = {0: "every build PASSED", 1: "at least one build FAILED", 2: "bad input (spec or paths)"}
+    rel = next_memo(state, "forgejury", "reviewer")
+    write_memo(rel, c, "forgejury", "reviewer", "review", "review", f"Forgejury: {summary}",
+               f"Mechanical grade of build round {state['iteration'] + 1}: spec axis, claims.json vs a "
+               f"fresh observation, and behavioral consensus across builds.\n\n"
+               f"Exit code: {code} ({meaning.get(code, 'forgejury did not run')}).\n\n```\n{human}\n```")
+    log(f"== forgejury: {summary} (exit {code})")
+    return rel
+
+
 def stage_review(state):
     c = state["cycle"]
+    jury = run_jury(state)
     memo = run_agent(state, "reviewer",
-                     f"Stage review. Evaluate builds/{c}/exec-1, exec-2 and exec-3 against builds/{c}/SPEC.md "
-                     f"by actually running them, write reports/{c}.md, and end your memo with the "
-                     f"VERDICT and WINNER lines.",
+                     f"Stage review. Start from the Forgejury report in {jury}: it has already checked "
+                     f"each build's required files, symbols and tests, whether its claims.json matches "
+                     f"reality, and where the builds disagree. Verify anything surprising yourself, then "
+                     f"judge what Forgejury cannot (usefulness, code quality, novelty) by running "
+                     f"builds/{c}/exec-1, exec-2 and exec-3 against builds/{c}/SPEC.md. Write "
+                     f"reports/{c}.md and end your memo with the VERDICT and WINNER lines.",
                      "all")
     text = (ROOT / memo).read_text(encoding="utf-8")
     verdict = (re.findall(r"VERDICT:\s*(SHIP|ITERATE|RESTART)", text) or ["SHIP"])[-1]

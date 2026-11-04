@@ -72,10 +72,15 @@ Role prompts live in [`agents/`](agents) and the shared rules in
    `research/<cycle>/report.md`.
 2. **debate**: novelty-a and novelty-b alternate for `debate_rounds` rounds,
    each ending with a ranked shortlist.
-3. **decide**: the reviewer picks one idea and writes `builds/<cycle>/SPEC.md`.
+3. **decide**: the reviewer picks one idea and writes `builds/<cycle>/SPEC.md`,
+   ending with a machine-checkable acceptance block that
+   [Forgejury](https://github.com/zerochance1907/forgejury) lints.
 4. **build**: the three executioners build the spec in parallel, each on its
-   own branch and worktree, merged back into `main` afterwards.
-5. **review**: the reviewer runs all builds, writes `reports/<cycle>.md`, and
+   own branch and worktree, merged back into `main` afterwards. Each one ends
+   by writing a `claims.json` saying what it believes it built.
+5. **review**: Forgejury grades every build mechanically (spec checks, claims
+   vs a fresh run, behavioral consensus) and posts the result as a memo. The
+   reviewer starts from it, runs all builds, writes `reports/<cycle>.md`, and
    returns `SHIP`, `ITERATE` (one more build round with feedback) or `RESTART`.
 6. **done**: an issue labelled `forge-report` links the owner to the report.
 
@@ -102,7 +107,9 @@ write the memo paths they are given.
 
 Requirements: Windows, macOS or Linux with Python 3.11+, Git, the
 [GitHub CLI](https://cli.github.com/) (`gh auth login`) and
-[Claude Code](https://docs.claude.com/en/docs/claude-code) (`claude auth login`).
+[Claude Code](https://docs.claude.com/en/docs/claude-code) (`claude auth login`), and
+Forgejury (`pip install git+https://github.com/zerochance1907/forgejury`).
+Without Forgejury the pipeline still runs, just with a reviewer-only review.
 
 ```bash
 # 1. Use this repo as a template or fork it, then clone your copy
