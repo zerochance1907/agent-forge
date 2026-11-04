@@ -1,15 +1,23 @@
 {
   "cycle": "2026-11-04",
-  "stage": "review",
+  "stage": "done",
   "step": 0,
   "iteration": 0,
   "restarts": 0,
   "failures": 0,
-  "seq": 26,
+  "seq": 28,
   "last_cycle_started": "2026-11-04T10:53:13",
-  "cost_usd": 17.6901,
+  "cost_usd": 19.5391,
   "pending_questions": [],
   "escalated": [],
-  "history": [],
+  "history": [
+    {
+      "cycle": "2026-11-04",
+      "iteration": 0,
+      "verdict": "SHIP",
+      "winner": "exec-2",
+      "decision": "Forgejury \u2014 one acceptance-block gate on the build\u2192review handoff"
+    }
+  ],
   "decision": "Forgejury \u2014 one acceptance-block gate on the build\u2192review handoff"
 }
