@@ -1,14 +1,15 @@
 {
   "cycle": "2026-11-04",
-  "stage": "decide",
+  "stage": "build",
   "step": 0,
   "iteration": 0,
   "restarts": 0,
   "failures": 0,
-  "seq": 18,
+  "seq": 20,
   "last_cycle_started": "2026-11-04T10:53:13",
-  "cost_usd": 6.5577,
+  "cost_usd": 8.0263,
   "pending_questions": [],
   "escalated": [],
-  "history": []
+  "history": [],
+  "decision": "Forgejury \u2014 one acceptance-block gate on the build\u2192review handoff"
 }
