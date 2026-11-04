@@ -25,7 +25,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 CONFIG = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
-LOCAL = json.loads((ROOT / "local.json").read_text(encoding="utf-8")) if (ROOT / "local.json").exists() else {}
+LOCAL = json.loads((ROOT / "local.json").read_text(encoding="utf-8-sig")) if (ROOT / "local.json").exists() else {}
 STATE_PATH = ROOT / "state" / "state.json"
 LOG_DIR = ROOT / "logs"
 LOCK = LOG_DIR / "forge.lock"
