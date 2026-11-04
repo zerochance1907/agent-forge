@@ -38,9 +38,9 @@
       "tools": ["Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "WebSearch",
                 "Bash(gh api:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
     },
-    "exec-1": { "prompt": ["executioner.md", "exec-1.md"], "model": "opus", "budget_usd": 10, "full_access": true },
-    "exec-2": { "prompt": ["executioner.md", "exec-2.md"], "model": "opus", "budget_usd": 10, "full_access": true },
-    "exec-3": { "prompt": ["executioner.md", "exec-3.md"], "model": "opus", "budget_usd": 10, "full_access": true },
+    "exec-1": { "prompt": ["executioner.md", "exec-1.md"], "model": "sonnet", "budget_usd": 10, "full_access": true },
+    "exec-2": { "prompt": ["executioner.md", "exec-2.md"], "model": "sonnet", "budget_usd": 10, "full_access": true },
+    "exec-3": { "prompt": ["executioner.md", "exec-3.md"], "model": "sonnet", "budget_usd": 10, "full_access": true },
     "reviewer": { "prompt": ["reviewer.md"], "model": "opus", "budget_usd": 6, "full_access": true }
   }
 }

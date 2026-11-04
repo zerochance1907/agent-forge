@@ -429,12 +429,23 @@ def ensure_labels():
 def acquire_lock():
     LOG_DIR.mkdir(exist_ok=True)
     if LOCK.exists() and time.time() - LOCK.stat().st_mtime < 8 * 3600:
-        return False
+        pid = LOCK.read_text().strip()
+        alive = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH"], capture_output=True,
+                               text=True).stdout if os.name == "nt" else             ("" if not Path(f"/proc/{pid}").exists() else pid)
+        if pid and pid in alive:
+            return False
+        log(f"removing stale lock from dead process {pid}")
     LOCK.write_text(str(os.getpid()))
     return True
 
 
+def reload_config():
+    global CONFIG
+    CONFIG = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
+
+
 def advance(state, force_new=False):
+    reload_config()
     if state["stage"] == "idle":
         return stage_idle(state, force=force_new)
     try:
