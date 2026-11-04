@@ -1,0 +1,26 @@
+{
+  "cycle": "2026-11-04",
+  "files": [
+    "forgejury/__init__.py",
+    "forgejury/__main__.py",
+    "forgejury/canonical.py",
+    "forgejury/determinism.py",
+    "forgejury/grade.py",
+    "forgejury/lint.py",
+    "forgejury/report.py",
+    "forgejury/runner.py",
+    "forgejury/spec_parser.py",
+    "forgejury/symbols.py",
+    "README.md",
+    "claims.json",
+    "examples/SPEC.md"
+  ],
+  "symbols": [
+    "forgejury/__main__.py::main",
+    "forgejury/__main__.py::build_parser",
+    "forgejury/grade.py::grade",
+    "forgejury/lint.py::lint_block"
+  ],
+  "test_cmd_exit": 0,
+  "tests_passed": 41
+}
