@@ -25,6 +25,12 @@ scout.py ─► researcher ─► novelty-a ⇄ novelty-b (3 rounds) ─► revi
                         reviewer: run all three ─► SHIP / ITERATE / RESTART
 ```
 
+## Shipped by Agent Forge
+
+| Cycle | Project | What it is |
+|---|---|---|
+| 2026-11-04 | [**forgejury**](https://github.com/zerochance1907/forgejury) | A lie detector for AI coding agents: re-checks what a build *claims* against what is actually on disk, and triangulates parallel builds. The full debate, spec and review are in [`memos/2026-11-04/`](memos/2026-11-04) and [`reports/2026-11-04.md`](reports/2026-11-04.md). |
+
 ## Why
 
 Most multi-agent demos pass messages in memory and vanish when the process
