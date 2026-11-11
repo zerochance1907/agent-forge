@@ -1,0 +1,205 @@
+{
+  "builds": [
+    {
+      "build": "builds/2026-11-11/exec-1",
+      "claims_axis": {
+        "files": "PASS",
+        "symbols": "PASS",
+        "test_cmd_exit": "PASS",
+        "tests_passed": "PASS"
+      },
+      "reasons": [],
+      "spec_axis": {
+        "file:README.md": "PASS",
+        "file:claims.json": "PASS",
+        "file:preflight.py": "PASS",
+        "file:tests/test_preflight.py": "PASS",
+        "symbol:preflight.py::classify_command": "PASS",
+        "test_cmd": "PASS"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "build": "builds/2026-11-11/exec-2",
+      "claims_axis": {
+        "files": "PASS",
+        "symbols": "PASS",
+        "test_cmd_exit": "PASS",
+        "tests_passed": "PASS"
+      },
+      "reasons": [],
+      "spec_axis": {
+        "file:README.md": "PASS",
+        "file:claims.json": "PASS",
+        "file:preflight.py": "PASS",
+        "file:tests/test_preflight.py": "PASS",
+        "symbol:preflight.py::classify_command": "PASS",
+        "test_cmd": "PASS"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "build": "builds/2026-11-11/exec-3",
+      "claims_axis": {
+        "files": "PASS",
+        "symbols": "PASS",
+        "test_cmd_exit": "PASS",
+        "tests_passed": "PASS"
+      },
+      "reasons": [],
+      "spec_axis": {
+        "file:README.md": "PASS",
+        "file:claims.json": "PASS",
+        "file:preflight.py": "PASS",
+        "file:tests/test_preflight.py": "PASS",
+        "symbol:preflight.py::classify_command": "PASS",
+        "test_cmd": "PASS"
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "consensus": {
+    "curl-post": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-11/exec-1": "PASS",
+        "builds/2026-11-11/exec-2": "PASS",
+        "builds/2026-11-11/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-11/exec-1": "EXTERNAL",
+        "builds/2026-11-11/exec-2": "EXTERNAL",
+        "builds/2026-11-11/exec-3": "EXTERNAL"
+      }
+    },
+    "git-push": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-11/exec-1": "PASS",
+        "builds/2026-11-11/exec-2": "PASS",
+        "builds/2026-11-11/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-11/exec-1": "EXTERNAL",
+        "builds/2026-11-11/exec-2": "EXTERNAL",
+        "builds/2026-11-11/exec-3": "EXTERNAL"
+      }
+    },
+    "git-reset-hard": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-11/exec-1": "PASS",
+        "builds/2026-11-11/exec-2": "PASS",
+        "builds/2026-11-11/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-11/exec-1": "DESTRUCTIVE_LOCAL",
+        "builds/2026-11-11/exec-2": "DESTRUCTIVE_LOCAL",
+        "builds/2026-11-11/exec-3": "DESTRUCTIVE_LOCAL"
+      }
+    },
+    "mkdir": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-11/exec-1": "PASS",
+        "builds/2026-11-11/exec-2": "PASS",
+        "builds/2026-11-11/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-11/exec-1": "REVERSIBLE_LOCAL",
+        "builds/2026-11-11/exec-2": "REVERSIBLE_LOCAL",
+        "builds/2026-11-11/exec-3": "REVERSIBLE_LOCAL"
+      }
+    },
+    "mv": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-11/exec-1": "PASS",
+        "builds/2026-11-11/exec-2": "PASS",
+        "builds/2026-11-11/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-11/exec-1": "DESTRUCTIVE_LOCAL",
+        "builds/2026-11-11/exec-2": "DESTRUCTIVE_LOCAL",
+        "builds/2026-11-11/exec-3": "DESTRUCTIVE_LOCAL"
+      }
+    },
+    "read-only-cat": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-11/exec-1": "PASS",
+        "builds/2026-11-11/exec-2": "PASS",
+        "builds/2026-11-11/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-11/exec-1": "SAFE",
+        "builds/2026-11-11/exec-2": "SAFE",
+        "builds/2026-11-11/exec-3": "SAFE"
+      }
+    },
+    "read-only-ls": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-11/exec-1": "PASS",
+        "builds/2026-11-11/exec-2": "PASS",
+        "builds/2026-11-11/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-11/exec-1": "SAFE",
+        "builds/2026-11-11/exec-2": "SAFE",
+        "builds/2026-11-11/exec-3": "SAFE"
+      }
+    },
+    "rm-rf": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-11/exec-1": "PASS",
+        "builds/2026-11-11/exec-2": "PASS",
+        "builds/2026-11-11/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-11/exec-1": "DESTRUCTIVE_LOCAL",
+        "builds/2026-11-11/exec-2": "DESTRUCTIVE_LOCAL",
+        "builds/2026-11-11/exec-3": "DESTRUCTIVE_LOCAL"
+      }
+    },
+    "unknown-verb": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-11/exec-1": "PASS",
+        "builds/2026-11-11/exec-2": "PASS",
+        "builds/2026-11-11/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-11/exec-1": "UNKNOWN",
+        "builds/2026-11-11/exec-2": "UNKNOWN",
+        "builds/2026-11-11/exec-3": "UNKNOWN"
+      }
+    }
+  },
+  "summary": {
+    "diverging": {},
+    "failed": {},
+    "no_majority": [],
+    "passed": 3,
+    "total": 3
+  }
+}
