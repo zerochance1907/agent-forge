@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md",
+    "preflight.py",
+    "tests/test_preflight.py",
+    "claims.json"
+  ],
+  "symbols": [
+    "preflight.py::classify_command"
+  ],
+  "test_cmd_exit": 0,
+  "tests_passed": 74,
+  "acceptance_criteria": {
+    "1_tier_prints_only_token": "pass",
+    "2_precedence_table_and_9_fixtures": "pass",
+    "3_classify_card_and_json_8_fields": "pass",
+    "4_destructive_local_file_enrichment": "pass",
+    "5_obfuscation_to_unknown": "pass",
+    "6_gate_default_pause_and_auto_approve_safe": "pass",
+    "7_readme_documents_required_sections": "pass",
+    "8_pytest_suite_passes": "pass",
+    "9_claims_json_maps_acceptance_criteria": "pass"
+  }
+}
