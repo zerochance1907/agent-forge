@@ -1,0 +1,26 @@
+{
+  "files": [
+    "preflight.py",
+    "tests/test_preflight.py",
+    "README.md",
+    "requirements-dev.txt",
+    "claims.json"
+  ],
+  "symbols": [
+    "preflight.py::classify_command",
+    "preflight.py::main"
+  ],
+  "test_cmd_exit": 0,
+  "tests_passed": 93,
+  "acceptance_criteria": {
+    "1_tier_stdout_only_tier_token": "pass",
+    "2_precedence_table_and_nine_consensus_fixtures": "pass",
+    "3_classify_card_and_json_eight_fields": "pass",
+    "4_files_affected_and_uncommitted_against_fixture_repo": "pass",
+    "5_obfuscation_inputs_classify_unknown": "pass",
+    "6_gate_default_pause_and_auto_approve_safe_flag": "pass",
+    "7_readme_covers_install_demo_table_flag_limits_hook": "pass",
+    "8_pytest_suite_covers_table_unknown_fallback_enrichment": "pass",
+    "9_claims_json_maps_acceptance_criteria": "pass"
+  }
+}
