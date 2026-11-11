@@ -1,13 +1,13 @@
 {
   "cycle": "2026-11-11",
-  "stage": "debate",
-  "step": 5,
+  "stage": "decide",
+  "step": 0,
   "iteration": 0,
   "restarts": 0,
   "failures": 0,
-  "seq": 12,
+  "seq": 14,
   "last_cycle_started": "2026-11-11T14:06:59",
-  "cost_usd": 6.9176,
+  "cost_usd": 7.8651,
   "pending_questions": [],
   "escalated": [],
   "history": [
