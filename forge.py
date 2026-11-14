@@ -18,6 +18,7 @@ import json
 import os
 import re
 import shutil
+import hashlib
 import subprocess
 import sys
 import time
@@ -195,11 +196,76 @@ class Job:
         return ok
 
 
+def worktree_snapshot():
+    """{path: content bytes or None if deleted} for every file git sees as changed or untracked."""
+    out = git("status", "--porcelain", "-z", "--untracked-files=all")
+    snap, parts, i = {}, out.split("\0"), 0
+    while i < len(parts):
+        entry = parts[i]
+        if len(entry) > 3:
+            p = ROOT / entry[3:]
+            snap[entry[3:]] = p.read_bytes() if p.is_file() else None
+            if entry[0] in "RC":
+                i += 1  # a rename or copy is followed by its old name
+        i += 1
+    return snap
+
+
+def allowed_write_paths(state, role):
+    """Folders a restricted agent may write to. Everything else is off limits."""
+    c = state["cycle"]
+    paths = CONFIG["agents"][role].get("write_paths") or ["memos/{cycle}/", "research/{cycle}/"]
+    return tuple(p.format(cycle=c) for p in paths)
+
+
+def stray_writes(before, after, allowed):
+    """Paths that changed while the agent ran and are outside its allowed folders."""
+    return sorted(p for p, data in after.items()
+                  if not p.startswith(allowed) and before.get(p, b"\0missing") != data)
+
+
+def revert_stray_writes(state, role, before):
+    """Undo anything a restricted agent wrote outside its own folders.
+
+    Research and debate agents are told to write only memos and research notes, but a
+    prompt is not a lock: with file tools they could rewrite forge.py, config.json or
+    another agent's instructions. So the orchestrator checks afterwards and puts back
+    every other file, to its content from before the agent ran.
+    """
+    after = worktree_snapshot()
+    allowed = allowed_write_paths(state, role)
+    # files that were dirty before and are clean again were also touched (reverted or rewritten)
+    for p in before:
+        if p not in after:
+            q = ROOT / p
+            after[p] = q.read_bytes() if q.is_file() else None
+    stray = stray_writes(before, after, allowed)
+    for p in stray:
+        target = ROOT / p
+        if p in before:
+            if before[p] is None:
+                target.unlink(missing_ok=True)
+            else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(before[p])
+        elif git("ls-files", "--error-unmatch", "--", p, check=False).strip():
+            git("checkout", "HEAD", "--", p)
+        else:
+            target.unlink(missing_ok=True)
+        log(f"!! {role} wrote outside its folders; reverted {p}")
+    return stray
+
+
 def run_agent(state, role, task, memo_to):
     memo_dir(state)
     job = Job(state, role, task, memo_to)
     save_state(state)
-    if not job.launch().wait(state):
+    restricted = not CONFIG["agents"][role].get("full_access")
+    before = worktree_snapshot() if restricted else None
+    ok = job.launch().wait(state)
+    if restricted:
+        revert_stray_writes(state, role, before)
+    if not ok:
         raise RuntimeError(f"{role} did not write {job.memo}; see {job.log_path}")
     return job.memo
 

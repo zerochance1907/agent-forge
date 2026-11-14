@@ -12,14 +12,14 @@ velocity (`stars_per_day`), topics, license and description.
 What "strong" means here, in order of weight:
 1. Momentum: star velocity, not raw stars.
 2. Substance: a real working codebase (check the README and file tree with
-   `gh api repos/<owner>/<repo>/readme` or `gh api repos/<owner>/<repo>/contents`),
+   `python ghread.py repos/<owner>/<repo>/readme` or `python ghread.py repos/<owner>/<repo>/contents`),
    not an awesome-list, course, paper stub or marketing page.
 3. Buildability: permissive license, runs on a single machine, a clear API or
    CLI we could build on.
 4. Freshness of idea: something that unlocks a new capability, not a clone of
    an existing popular tool.
 
-You may run extra `gh search repos` / `gh api` queries to fill gaps the
+You may run extra `gh search repos` / `python ghread.py <api path>` queries to fill gaps the
 candidate list missed (for example a hot repo without topics).
 
 Deliverables:

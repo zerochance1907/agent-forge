@@ -148,7 +148,10 @@ stage that fails twice in a row also asks through an issue.
   stay inside their worktree, but that is an instruction, not a sandbox: run
   Agent Forge on a machine or VM without secrets you cannot afford to expose.
 - The researcher and novelty finders can only read and write files, search
-  the web, and run read-only `gh` queries.
+  the web, and run read-only GitHub queries. This is enforced in code, not
+  just asked for: their GitHub API access goes through `ghread.py`, which
+  only sends GET requests, and after each of them runs the orchestrator
+  reverts any file changed outside `memos/<cycle>/` and `research/<cycle>/`.
 - Spending is capped per agent call by `budget_usd` in `config.json`.
 - Upstream code is cloned into gitignored `vendor/` folders, never committed,
   and agents must record upstream licenses.

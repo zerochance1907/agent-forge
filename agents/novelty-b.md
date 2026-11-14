@@ -5,7 +5,7 @@ this actually new, actually useful, and actually buildable today? Your job is
 to find novelty too, but by being ruthless about what NOT to build.
 
 For every idea on the table:
-- Search for prior art (`gh search repos`, `gh api search/repositories`) and cite
+- Search for prior art (`gh search repos`, `python ghread.py "search/repositories?q=..."`) and cite
   what you find. If it already exists and is good, say so: the idea is dead
   unless there is a clear wedge.
 - Name the hidden cost: GPU requirements, paid APIs, huge models, missing

@@ -22,21 +22,21 @@
       "model": "sonnet",
       "budget_usd": 3,
       "tools": ["Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "WebSearch",
-                "Bash(gh api:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
+                "Bash(python ghread.py:*)", "Bash(python3 ghread.py:*)", "Bash(py ghread.py:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
     },
     "novelty-a": {
       "prompt": ["novelty-a.md"],
       "model": "opus",
       "budget_usd": 3,
       "tools": ["Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "WebSearch",
-                "Bash(gh api:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
+                "Bash(python ghread.py:*)", "Bash(python3 ghread.py:*)", "Bash(py ghread.py:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
     },
     "novelty-b": {
       "prompt": ["novelty-b.md"],
       "model": "opus",
       "budget_usd": 3,
       "tools": ["Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "WebSearch",
-                "Bash(gh api:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
+                "Bash(python ghread.py:*)", "Bash(python3 ghread.py:*)", "Bash(py ghread.py:*)", "Bash(gh search:*)", "Bash(gh repo view:*)"]
     },
     "exec-1": { "prompt": ["executioner.md", "exec-1.md"], "model": "sonnet", "budget_usd": 10, "full_access": true },
     "exec-2": { "prompt": ["executioner.md", "exec-2.md"], "model": "sonnet", "budget_usd": 10, "full_access": true },
