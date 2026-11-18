@@ -1,0 +1,146 @@
+{
+  "builds": [
+    {
+      "build": "builds/2026-11-18/exec-1",
+      "claims_axis": {
+        "files": "PASS",
+        "symbols": "PASS",
+        "test_cmd_exit": "PASS",
+        "tests_passed": "PASS"
+      },
+      "reasons": [],
+      "spec_axis": {
+        "file:README.md": "PASS",
+        "file:buildoracle/__main__.py": "PASS",
+        "file:buildoracle/core.py": "PASS",
+        "file:claims.json": "PASS",
+        "file:tests/test_core.py": "PASS",
+        "symbol:buildoracle/core.py::canonicalize": "PASS",
+        "symbol:buildoracle/core.py::classify": "PASS",
+        "symbol:buildoracle/core.py::verify": "PASS",
+        "test_cmd": "PASS"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "build": "builds/2026-11-18/exec-2",
+      "claims_axis": {
+        "files": "PASS",
+        "symbols": "PASS",
+        "test_cmd_exit": "PASS",
+        "tests_passed": "PASS"
+      },
+      "reasons": [],
+      "spec_axis": {
+        "file:README.md": "PASS",
+        "file:buildoracle/__main__.py": "PASS",
+        "file:buildoracle/core.py": "PASS",
+        "file:claims.json": "PASS",
+        "file:tests/test_core.py": "PASS",
+        "symbol:buildoracle/core.py::canonicalize": "PASS",
+        "symbol:buildoracle/core.py::classify": "PASS",
+        "symbol:buildoracle/core.py::verify": "PASS",
+        "test_cmd": "PASS"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "build": "builds/2026-11-18/exec-3",
+      "claims_axis": {
+        "files": "PASS",
+        "symbols": "PASS",
+        "test_cmd_exit": "PASS",
+        "tests_passed": "FAIL",
+        "tests_passed_detail": "claimed 16, observed 19"
+      },
+      "reasons": [
+        "claims:tests_passed"
+      ],
+      "spec_axis": {
+        "file:README.md": "PASS",
+        "file:buildoracle/__main__.py": "PASS",
+        "file:buildoracle/core.py": "PASS",
+        "file:claims.json": "PASS",
+        "file:tests/test_core.py": "PASS",
+        "symbol:buildoracle/core.py::canonicalize": "PASS",
+        "symbol:buildoracle/core.py::classify": "PASS",
+        "symbol:buildoracle/core.py::verify": "PASS",
+        "test_cmd": "PASS"
+      },
+      "verdict": "FAIL"
+    }
+  ],
+  "consensus": {
+    "identity": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-18/exec-1": "PASS",
+        "builds/2026-11-18/exec-2": "PASS",
+        "builds/2026-11-18/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-18/exec-1": "{\"verdict\": \"PASS\"}",
+        "builds/2026-11-18/exec-2": "{\"verdict\": \"PASS\"}",
+        "builds/2026-11-18/exec-3": "{\"verdict\": \"PASS\"}"
+      }
+    },
+    "keyorder": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-18/exec-1": "PASS",
+        "builds/2026-11-18/exec-2": "PASS",
+        "builds/2026-11-18/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-18/exec-1": "{\"verdict\": \"PASS\"}",
+        "builds/2026-11-18/exec-2": "{\"verdict\": \"PASS\"}",
+        "builds/2026-11-18/exec-3": "{\"verdict\": \"PASS\"}"
+      }
+    },
+    "nondeterministic": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-18/exec-1": "PASS",
+        "builds/2026-11-18/exec-2": "PASS",
+        "builds/2026-11-18/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-18/exec-1": "{\"verdict\": \"REFUSE\"}",
+        "builds/2026-11-18/exec-2": "{\"verdict\": \"REFUSE\"}",
+        "builds/2026-11-18/exec-3": "{\"verdict\": \"REFUSE\"}"
+      }
+    },
+    "offbyone": {
+      "diverging_build": null,
+      "errors": null,
+      "expected_match": {
+        "builds/2026-11-18/exec-1": "PASS",
+        "builds/2026-11-18/exec-2": "PASS",
+        "builds/2026-11-18/exec-3": "PASS"
+      },
+      "label": "3-0",
+      "outputs": {
+        "builds/2026-11-18/exec-1": "{\"verdict\": \"FAIL\"}",
+        "builds/2026-11-18/exec-2": "{\"verdict\": \"FAIL\"}",
+        "builds/2026-11-18/exec-3": "{\"verdict\": \"FAIL\"}"
+      }
+    }
+  },
+  "summary": {
+    "diverging": {},
+    "failed": {
+      "builds/2026-11-18/exec-3": [
+        "claims:tests_passed"
+      ]
+    },
+    "no_majority": [],
+    "passed": 2,
+    "total": 3
+  }
+}
