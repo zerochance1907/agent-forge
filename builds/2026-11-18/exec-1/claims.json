@@ -1,0 +1,50 @@
+{
+  "files": [
+    "README.md",
+    "buildoracle/__init__.py",
+    "buildoracle/__main__.py",
+    "buildoracle/core.py",
+    "buildoracle/cases/__init__.py",
+    "buildoracle/cases/identity/original.py",
+    "buildoracle/cases/identity/refactored.py",
+    "buildoracle/cases/identity/exercise.py",
+    "buildoracle/cases/offbyone/original.py",
+    "buildoracle/cases/offbyone/refactored.py",
+    "buildoracle/cases/offbyone/exercise.py",
+    "buildoracle/cases/nondeterministic/original.py",
+    "buildoracle/cases/nondeterministic/exercise.py",
+    "buildoracle/cases/keyorder/original.py",
+    "buildoracle/cases/keyorder/refactored.py",
+    "buildoracle/cases/keyorder/exercise.py",
+    "tests/test_core.py",
+    "claims.json"
+  ],
+  "symbols": [
+    "buildoracle/core.py::canonicalize",
+    "buildoracle/core.py::classify",
+    "buildoracle/core.py::verify",
+    "buildoracle/core.py::record",
+    "buildoracle/core.py::static_scan",
+    "buildoracle/core.py::load_module",
+    "buildoracle/core.py::run_exercise"
+  ],
+  "test_cmd_exit": 0,
+  "tests_passed": 11,
+  "acceptance": {
+    "1_runnable_and_demo": "met",
+    "2_gate_single_line_stdout_pinned_verdicts": "met",
+    "3_classify_static_and_double_run": "met",
+    "4_canonicalize_tested_and_keyorder_depends_on_it": "met",
+    "5_verify_exit_codes_0_10_20": "met",
+    "6_honest_coverage_line": "met",
+    "7_offline_no_network_no_secrets": "met",
+    "8_readme_documents_flow_and_unbuilt_heads": "met",
+    "9_test_core_covers_canonicalize_refuse_pass_fail": "met",
+    "10_claims_json_per_criterion": "met"
+  },
+  "not_built": [
+    "Head B (Disagreement Triage) -- explicitly optional/ungraded reach per spec",
+    "Head C (Spec-Gap Report) -- explicitly optional/ungraded reach per spec",
+    "blind fuzzing / property generation -- explicitly out of scope per spec"
+  ]
+}
