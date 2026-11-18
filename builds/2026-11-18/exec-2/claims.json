@@ -1,0 +1,52 @@
+{
+  "files": [
+    "README.md",
+    "claims.json",
+    "buildoracle/__init__.py",
+    "buildoracle/__main__.py",
+    "buildoracle/core.py",
+    "buildoracle/cases/identity/original.py",
+    "buildoracle/cases/identity/refactored.py",
+    "buildoracle/cases/identity/exercise.py",
+    "buildoracle/cases/offbyone/original.py",
+    "buildoracle/cases/offbyone/refactored.py",
+    "buildoracle/cases/offbyone/exercise.py",
+    "buildoracle/cases/nondeterministic/original.py",
+    "buildoracle/cases/nondeterministic/refactored.py",
+    "buildoracle/cases/nondeterministic/exercise.py",
+    "buildoracle/cases/keyorder/original.py",
+    "buildoracle/cases/keyorder/refactored.py",
+    "buildoracle/cases/keyorder/exercise.py",
+    "tests/test_core.py"
+  ],
+  "symbols": [
+    "buildoracle/core.py::canonicalize",
+    "buildoracle/core.py::classify",
+    "buildoracle/core.py::verify",
+    "buildoracle/core.py::record",
+    "buildoracle/core.py::record_to_file",
+    "buildoracle/core.py::verify_trace_file",
+    "buildoracle/core.py::static_scan",
+    "buildoracle/core.py::run_case",
+    "buildoracle/core.py::run_exercise",
+    "buildoracle/__main__.py::main"
+  ],
+  "test_cmd_exit": 0,
+  "tests_passed": 21,
+  "acceptance_criteria": {
+    "1_runnable_demo": "pass",
+    "2_gate_pinned_stdout_exit0": "pass",
+    "3_classify_static_and_empirical": "pass",
+    "4_canonicalize_tested_keyorder_pass_because": "pass",
+    "5_verify_exit_codes_0_10_20": "pass",
+    "6_head_a_coverage_line": "pass",
+    "7_offline_no_network_no_secrets": "pass",
+    "8_readme_complete": "pass",
+    "9_test_core_covers_canonicalize_refuse_pass_fail": "pass",
+    "10_claims_json_present": "pass"
+  },
+  "heads_built": ["Core", "Head A (Refactor Gate)"],
+  "heads_not_built": ["Head B (Disagreement Triage)", "Head C (Spec-Gap Report)"],
+  "network_calls": 0,
+  "secrets_read": 0
+}
