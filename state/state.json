@@ -4,12 +4,22 @@
   "step": 4,
   "iteration": 0,
   "restarts": 0,
-  "failures": 2,
+  "failures": 0,
   "seq": 15,
   "last_cycle_started": "2026-11-25T15:52:07",
   "cost_usd": 7.5137,
-  "pending_questions": [],
-  "escalated": [],
+  "pending_questions": [
+    {
+      "issue": 5,
+      "memo": "memos/2026-11-25/013-orchestrator-to-human.md",
+      "from": "orchestrator",
+      "blocking": true,
+      "cycle": "2026-11-25"
+    }
+  ],
+  "escalated": [
+    "memos/2026-11-25/013-orchestrator-to-human.md"
+  ],
   "history": [
     {
       "cycle": "2026-11-04",
